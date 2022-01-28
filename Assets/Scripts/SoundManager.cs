@@ -7,7 +7,7 @@ public static class SoundManager
     public enum Sound
     {
         //voices
-        Yahoo,attackS
+        Yahoo,
 
         //Sound Effects
         
