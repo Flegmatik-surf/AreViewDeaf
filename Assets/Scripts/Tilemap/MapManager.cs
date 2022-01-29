@@ -15,6 +15,8 @@ public class MapManager : MonoBehaviour
     bool inSand = false;
     public static event Action SignalSandDamage;
 
+    //sound
+    bool isPlaying=false;
 
 
     private void Awake()
@@ -45,12 +47,42 @@ public class MapManager : MonoBehaviour
 
         if (dataFromTile[tile].type == "sandScorpio")
         {
-            
+            SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
+            int number = 0;
+            if (!isPlaying)
+            {
+                number = (number + 1) % (soundSand.Length);
+                StartCoroutine(SoundCooldown(soundSand[number]));
+            }
             SandScorpio();
         }
         else {
             inSand = false;
             StopCoroutine(SandDamage(10));
+            if (dataFromTile[tile].type == "sand")
+            {
+                SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
+                int number = 0;
+                if (!isPlaying)
+                {
+                    number = (number + 1) % (soundSand.Length);
+                    StartCoroutine(SoundCooldown(soundSand[number]));
+                }
+            }
+            if (dataFromTile[tile].type == "donjon")
+            {
+                SoundManager.Sound[] soundSand = { SoundManager.Sound.Donjon_1, SoundManager.Sound.Donjon_2, SoundManager.Sound.Donjon_3 };
+                int number = 0;
+                if (!isPlaying)
+                {
+                    number = (number + 1) % (soundSand.Length);
+                    StartCoroutine(SoundCooldown(soundSand[number]));
+                }
+            }
+            if (dataFromTile[tile].type == "grass")
+            {
+
+            }
         }
 
     }
@@ -69,6 +101,16 @@ public class MapManager : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         SignalSandDamage?.Invoke();
         inSand = false;
+        yield return null;
+    }
+
+    IEnumerator SoundCooldown(SoundManager.Sound sound)
+    {
+        isPlaying = true;
+        SoundManager.PlaySound(sound);
+        yield return new WaitForSeconds(0.2f);
+        isPlaying = false;
+
         yield return null;
     }
 
