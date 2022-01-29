@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
-{ 
+{
+    //health
     public HealthHeart healthHeart;
     int currentHealth;
+    //map
+    private MapManager mapManager;
+    //degat
+    bool invincibilty = false;
 
 
-    // Start is called before the first frame update
+
+
+    private void Awake()
+    {
+        mapManager = FindObjectOfType<MapManager>();
+    }
     void Start()
     {
         currentHealth = healthHeart.numberOfHearth;
@@ -17,10 +27,15 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("a"))
+        int damage = mapManager.GetTileDamage(transform.position);
+        mapManager.Effect(transform.position);
+        if (invincibilty == false)
         {
-            TakeDamage(1);
+            TakeDamage(damage);
+// StartCoroutine(Invicible(3));
         }
+            
+        
     }
 
     void TakeDamage(int damage)
@@ -33,7 +48,15 @@ public class PlayerManager : MonoBehaviour
         {
             currentHealth -= damage;
         }
-        
+
         healthHeart.health = currentHealth;
+    }
+
+    IEnumerator Invicible(int cooldown)
+    {
+        invincibilty = true;
+        yield return new WaitForSeconds(cooldown);
+        invincibilty = false;
+        yield return null;
     }
 }

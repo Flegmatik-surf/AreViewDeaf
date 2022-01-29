@@ -8,6 +8,10 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Tilemap map;
     [SerializeField] private List<TileData> tileDatas;
     private Dictionary<TileBase, TileData> dataFromTile;
+
+    bool sandDamage = false;
+    bool inSand = false;
+
     private void Awake()
     {
         dataFromTile = new Dictionary<TileBase, TileData>();
@@ -19,28 +23,57 @@ public class MapManager : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = map.WorldToCell(mousePosition);
-            TileBase clickedTile = map.GetTile(gridPosition);
-            float walkingSpeed = dataFromTile[clickedTile].walkingSpeed;
-            print(walkingSpeed);
-        }
-    }
-
+    
     public float GetTileWalkingSpeed(Vector2 worldPosition)
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
         float walkingSpeed = dataFromTile[tile].walkingSpeed;
-        return walkingSpeed;
+        return walkingSpeed;      
+    }
 
-
+    public int GetTileDamage(Vector2 worldPosition)
+    {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+        int damage = dataFromTile[tile].damage;
+        return damage;
         
     }
+
+    public void Effect(Vector2 worldPosition)
+    {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+        if (dataFromTile[tile].type == "sand")
+        {
+            
+            Sand();
+        }
+        else {
+            StopCoroutine(SandDamage(3));
+        }
+
+    }
+
+    void Sand()
+    {
+        print(inSand);
+        if (!inSand) {
+            print("mais nonnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+            StartCoroutine(SandDamage(10)); 
+        }
+        
+    }
+
+    IEnumerator SandDamage(int cooldown)
+    {
+        inSand = true;
+        yield return new WaitForSeconds(cooldown);
+        sandDamage = true;
+        print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        inSand = false;
+        yield return null;
+    }
+
 }
