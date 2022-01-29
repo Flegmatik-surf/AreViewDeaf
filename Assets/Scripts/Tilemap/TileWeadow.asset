@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b796953b92434404e80ae1fc0da22d83, type: 3}
-  m_Name: TileStone
+  m_Name: TileWeadow
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 11400000, guid: 0c9ed783bf978c54098e2839b92b95e8, type: 2}
-  walkingSpeed: 6
-  type: donjon
+  tiles: []
+  walkingSpeed: 5
+  type: grass
