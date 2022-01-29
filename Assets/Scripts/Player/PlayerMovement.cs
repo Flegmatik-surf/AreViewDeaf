@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody2D rb;
     private Animator anim;
+    private MapManager mapManager;
 
     // Start is called before the first frame update//
     void Start()
@@ -15,10 +16,24 @@ public class PlayerMovement : MonoBehaviour
         anim = this.GetComponent<Animator>();
     }
 
+    private void Awake()
+    {
+        mapManager = FindObjectOfType<MapManager>();
+        print(mapManager);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+
+        speed = mapManager.GetTileWalkingSpeed(transform.position);
+        print(speed);
+
+
+
+
+
         float h_input = 0;
         float v_input = 0;
         anim.SetBool("Up", false);
@@ -26,8 +41,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Left", false);
         anim.SetBool("Right", false);
 
+
         if (Input.GetKey(KeyCode.Z))
         {
+            print("grooooooooooooooooo");
             anim.SetBool("Up", true);
             v_input += 1;
         }
