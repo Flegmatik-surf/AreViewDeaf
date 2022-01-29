@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/concrete/concrete_walk_0.wav.meta
+guid: aba5f202beec9e04d8a7eb99a3a93d0e
+=======
+guid: 6ff76b0e55376eb43a476518d6043de4
+>>>>>>> b97c44025fd5e5112d0c4a466aa052ab1b77659b:Assets/Sounds/portal/portal_nearby_loop​.wav.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

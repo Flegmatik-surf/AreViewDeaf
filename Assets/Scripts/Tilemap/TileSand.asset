@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b796953b92434404e80ae1fc0da22d83, type: 3}
   m_Name: TileSand
   m_EditorClassIdentifier: 
-  tiles: []
-  walkingSpeed: 0
+  tiles:
+  - {fileID: 11400000, guid: b31ff8ad6ebdca64cbd5dd55caec0401, type: 2}
+  walkingSpeed: 3
+  type: sand
