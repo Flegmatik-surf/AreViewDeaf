@@ -21,13 +21,13 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private int startScene = 1;
     [SerializeField] private int savedScene = 1;
-    AudioSource audioSource;
+    AudioSource clicButtonAudioSource;
     Resolution[] resolutions;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        print(audioSource);
+        clicButtonAudioSource = GetComponent<AudioSource>();
+        print(clicButtonAudioSource);
 
         resolutions = Screen.resolutions;
         List<string> options = new List<string>();
@@ -47,17 +47,32 @@ public class MainMenuManager : MonoBehaviour
         ApplyDefaults();
     }
 
+    public void StartNewGame()
+    {
+        clicButtonAudioSource.Play();
+        print("Yeeeah nouvelle partie");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
+    }
+
+    public void ContinueGame()
+    {
+        clicButtonAudioSource.Play();
+        print("Yeahhh let's continue");
+        //savedScene = PlayerPrefs.GetInt("savedLevel");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
+    }
+
 
     public void GoToSettingsScreen()
     {
-        audioSource.Play();
+        clicButtonAudioSource.Play();
         titleScreenContainer.SetActive(false);
         settingsScreenContainer.SetActive(true);
     }
 
     public void GoToTitleScreen()
     {
-        audioSource.Play();
+        clicButtonAudioSource.Play();
         titleScreenContainer.SetActive(true);
         settingsScreenContainer.SetActive(false);
     }
@@ -65,18 +80,21 @@ public class MainMenuManager : MonoBehaviour
 
     public void SetGraphicsQuality(int qualityIndex)
     {
+        clicButtonAudioSource.Play();
         Debug.Log("quality : " + qualityIndex);
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
     public void SetResolution(int resolutionInt)
     {
+        clicButtonAudioSource.Play();
         Resolution resolution = resolutions[resolutionInt];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetVolume(float volume)
     {
+        clicButtonAudioSource.Play();
         musicAudioMixer.SetFloat("mainVolume", volume);
         sfxAudioMixer.SetFloat("sfxVolume", volume);
     }
@@ -89,7 +107,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        audioSource.Play();
+        clicButtonAudioSource.Play();
         Debug.Log("On quitte le jeu !");
         Application.Quit();
     }
