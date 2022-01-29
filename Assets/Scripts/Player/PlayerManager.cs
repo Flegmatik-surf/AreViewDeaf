@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerManager : MonoBehaviour
 {
     //health
@@ -9,8 +9,10 @@ public class PlayerManager : MonoBehaviour
     int currentHealth;
     //map
     private MapManager mapManager;
+
     //degat
     bool invincibilty = false;
+    int damage = 0;
 
 
 
@@ -18,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         mapManager = FindObjectOfType<MapManager>();
+        MapManager.SignalSandDamage += OnSignalSand;
+
     }
     void Start()
     {
@@ -27,29 +31,26 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int damage = mapManager.GetTileDamage(transform.position);
-        mapManager.Effect(transform.position);
-        if (invincibilty == false)
-        {
-            TakeDamage(damage);
-// StartCoroutine(Invicible(3));
-        }
-            
-        
+        mapManager.Effect(transform.position);      
     }
+
 
     void TakeDamage(int damage)
     {
-        if (currentHealth - damage < 0)
+        if (invincibilty == false)
         {
-            currentHealth = 0;
-        }
-        else
-        {
-            currentHealth -= damage;
-        }
+            StartCoroutine(Invicible(3));
+            if (currentHealth - damage < 0)
+            {
+                currentHealth = 0;
+            }
+            else
+            {
+                currentHealth -= damage;
+            }
 
-        healthHeart.health = currentHealth;
+            healthHeart.health = currentHealth;
+        }
     }
 
     IEnumerator Invicible(int cooldown)
@@ -58,5 +59,10 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         invincibilty = false;
         yield return null;
+    }
+
+    private void OnSignalSand()
+    {
+        TakeDamage(1);
     }
 }

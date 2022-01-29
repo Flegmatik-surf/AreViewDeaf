@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+
     [SerializeField] private Tilemap map;
     [SerializeField] private List<TileData> tileDatas;
     private Dictionary<TileBase, TileData> dataFromTile;
 
-    bool sandDamage = false;
+    //sand
     bool inSand = false;
+    public static event Action SignalSandDamage;
+
+
 
     private void Awake()
     {
@@ -32,36 +37,28 @@ public class MapManager : MonoBehaviour
         return walkingSpeed;      
     }
 
-    public int GetTileDamage(Vector2 worldPosition)
-    {
-        Vector3Int gridPosition = map.WorldToCell(worldPosition);
-        TileBase tile = map.GetTile(gridPosition);
-        int damage = dataFromTile[tile].damage;
-        return damage;
-        
-    }
 
     public void Effect(Vector2 worldPosition)
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
+
         if (dataFromTile[tile].type == "sand")
         {
             
             Sand();
         }
         else {
-            StopCoroutine(SandDamage(3));
+            inSand = false;
+            StopCoroutine(SandDamage(10));
         }
 
     }
 
     void Sand()
     {
-        print(inSand);
         if (!inSand) {
-            print("mais nonnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
-            StartCoroutine(SandDamage(10)); 
+            StartCoroutine(SandDamage(5));
         }
         
     }
@@ -70,8 +67,7 @@ public class MapManager : MonoBehaviour
     {
         inSand = true;
         yield return new WaitForSeconds(cooldown);
-        sandDamage = true;
-        print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+        SignalSandDamage?.Invoke();
         inSand = false;
         yield return null;
     }

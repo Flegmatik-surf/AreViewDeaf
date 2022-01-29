@@ -11,5 +11,4 @@ public class TileData : ScriptableObject
     public float walkingSpeed;
 
     public string type;
-    public int damage;
 }
