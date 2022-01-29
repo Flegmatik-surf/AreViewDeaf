@@ -1,9 +1,20 @@
 fileFormatVersion: 2
 <<<<<<< HEAD:Assets/Sounds/Vrac/gravel_walk.wav.meta
+<<<<<<< HEAD
+guid: 083afdea79e031b4687ce99a756d8791
+=======
+<<<<<<< HEAD
+guid: a67722ec1973cca4d9dbaf6e8c5b3373
+=======
+guid: d5ea58fae996f413aa25591239095da7
+>>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7:Assets/Sounds/Vrac/snow.wav.meta
+=======
 guid: a765407593dc8e846a7ce99d917b959f
 =======
 guid: 7293b9a53e0d74662b9fcf1d88dae51f
 >>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767:Assets/Sounds/gravel_walk.wav.meta
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

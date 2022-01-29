@@ -1,9 +1,20 @@
 fileFormatVersion: 2
 <<<<<<< HEAD:Assets/Sounds/Vrac/sand_walk.wav.meta
+<<<<<<< HEAD
+guid: 53a226af9f714054fb6b8cb0ec5de050
+=======
+<<<<<<< HEAD
+guid: b15a59b196933524a861b309dfe69257
+=======
+guid: ba46a3f63e9884343a983d2223c97149
+>>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7:Assets/Music/xMasPipouVibe.mp3.meta
+=======
 guid: fc87430b3cca9a74093c3109ef87dc08
 =======
 guid: f872f747a497a4723bdb104ebdc59b1d
 >>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767:Assets/Sounds/sand_walk.wav.meta
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
