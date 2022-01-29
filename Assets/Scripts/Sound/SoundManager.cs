@@ -7,10 +7,10 @@ public static class SoundManager
     public enum Sound
     {
         //voices
-        Yahoo,
+        
 
         //Sound Effects
-        
+        Sand_1,Sand_2,Sand_3,Donjon_1,Donjon_2,Donjon_3
     }
 
     //private static GameObject oneShotGameObject;
