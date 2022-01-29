@@ -59,7 +59,7 @@ public class MainMenuManager : MonoBehaviour
         clicButtonAudioSource.Play();
         print("Yeahhh let's continue");
         //savedScene = PlayerPrefs.GetInt("savedLevel");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(savedScene);
     }
 
 
