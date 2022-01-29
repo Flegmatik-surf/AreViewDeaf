@@ -1,11 +1,35 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+guid: f9be5b76dc44dee40842b9580e257d6a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -432674713727891427
+    second: PlayerMovement_0
+  - first:
+      213: 1543661310651966809
+    second: PlayerMovement_1
+  - first:
+      213: 3770782470277414165
+    second: PlayerMovement_2
+  - first:
+      213: -6066284856684404652
+    second: PlayerMovement_3
+  - first:
+      213: -5596377565492435346
+    second: PlayerMovement_4
+  - first:
+      213: 7372979681074637929
+    second: PlayerMovement_5
+=======
+<<<<<<< HEAD
 guid: 468d7b2bff96a1b4f8a99a56b0b09556
 =======
 guid: 5f48a5acdec20423c92a3f469d2206fd
 >>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767
 TextureImporter:
   internalIDToNameTable: []
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -36,7 +60,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: 0
+=======
     filterMode: 1
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -45,7 +73,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 2
+=======
   spriteMode: 1
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -79,9 +111,153 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayerMovement_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1884f8e3a4def9f0800000000000000
+      internalID: -432674713727891427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerMovement_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955acea88cf2c6510800000000000000
+      internalID: 1543661310651966809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerMovement_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51db722ada2845430800000000000000
+      internalID: 3770782470277414165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerMovement_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 450aefa301a30dba0800000000000000
+      internalID: -6066284856684404652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerMovement_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66abdb414ca552b0800000000000000
+      internalID: -5596377565492435346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerMovement_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c60aac4f5125660800000000000000
+      internalID: 7372979681074637929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+=======
   spriteSheet:
     serializedVersion: 2
     sprites: []
+>>>>>>> e22973ef1ab9ec7d5fb7bdd2b515846b62e103a7
     outline: []
     physicsShape: []
     bones: []
