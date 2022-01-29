@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+
     [SerializeField] private Tilemap map;
     [SerializeField] private List<TileData> tileDatas;
     private Dictionary<TileBase, TileData> dataFromTile;
+
+    //sand
+    bool inSand = false;
+    public static event Action SignalSandDamage;
+
+
+
     private void Awake()
     {
         dataFromTile = new Dictionary<TileBase, TileData>();
@@ -19,28 +28,48 @@ public class MapManager : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = map.WorldToCell(mousePosition);
-            TileBase clickedTile = map.GetTile(gridPosition);
-            float walkingSpeed = dataFromTile[clickedTile].walkingSpeed;
-            print(walkingSpeed);
-        }
-    }
-
+    
     public float GetTileWalkingSpeed(Vector2 worldPosition)
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
         float walkingSpeed = dataFromTile[tile].walkingSpeed;
-        return walkingSpeed;
+        return walkingSpeed;      
+    }
 
 
+    public void Effect(Vector2 worldPosition)
+    {
+        Vector3Int gridPosition = map.WorldToCell(worldPosition);
+        TileBase tile = map.GetTile(gridPosition);
+
+        if (dataFromTile[tile].type == "sandScorpio")
+        {
+            
+            SandScorpio();
+        }
+        else {
+            inSand = false;
+            StopCoroutine(SandDamage(10));
+        }
+
+    }
+
+    void SandScorpio()
+    {
+        if (!inSand) {
+            StartCoroutine(SandDamage(5));
+        }
         
     }
+
+    IEnumerator SandDamage(int cooldown)
+    {
+        inSand = true;
+        yield return new WaitForSeconds(cooldown);
+        SignalSandDamage?.Invoke();
+        inSand = false;
+        yield return null;
+    }
+
 }

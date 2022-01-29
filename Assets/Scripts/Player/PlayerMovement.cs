@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         mapManager = FindObjectOfType<MapManager>();
-        print(mapManager);
     }
 
 
@@ -29,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         speed = mapManager.GetTileWalkingSpeed(transform.position);
-        print(speed);
 
         //anim.SetFloat("Direction", 1f);
 

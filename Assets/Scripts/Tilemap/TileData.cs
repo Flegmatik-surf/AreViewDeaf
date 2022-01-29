@@ -10,4 +10,5 @@ public class TileData : ScriptableObject
     public TileBase[] tiles;
     public float walkingSpeed;
 
+    public string type;
 }
