@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 { 
-    public int maxHealth = 100;
-    public int currentHealth;
+    public HealthHeart healthHeart;
+    int currentHealth;
 
-    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = healthHeart.numberOfHearth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("a"))
+        {
+            TakeDamage(1);
+        }
     }
 
     void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (currentHealth - damage < 0)
+        {
+            currentHealth = 0;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
+        
+        healthHeart.health = currentHealth;
     }
 }
