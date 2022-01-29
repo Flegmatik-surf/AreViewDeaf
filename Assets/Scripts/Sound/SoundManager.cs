@@ -10,7 +10,7 @@ public static class SoundManager
         
 
         //Sound Effects
-        Sand_1,Sand_2,Sand_3,Donjon_1,Donjon_2,Donjon_3
+        Sand_1,Sand_2,Sand_3,Donjon_1,Donjon_2,Donjon_3,Spike_up,Spike_down,Spike_trigger
     }
 
     //private static GameObject oneShotGameObject;

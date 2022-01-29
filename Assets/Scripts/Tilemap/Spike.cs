@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.Tilemaps;
-
+using System;
 
 public class Spike : MonoBehaviour
 {
     [SerializeField] AnimatedTile tile;
     bool start = true;
-    
-    void Start()
-    {
-        //tile.m_AnimationStartFrame;
-    }
+    bool up = false;
+    public static event Action SignalSpike;
+    bool isInvicibl = false;
+
+
 
     // Update is called once per frame
     void Update()
@@ -28,13 +28,31 @@ public class Spike : MonoBehaviour
     IEnumerator SpikeSound()
     {
         start = false;
-        print("not up");
+        SoundManager.PlaySound(SoundManager.Sound.Spike_down);
+        up = false;
         yield return new WaitForSeconds(1f);
-        print("trigger");
+        SoundManager.PlaySound(SoundManager.Sound.Spike_trigger);
         yield return new WaitForSeconds(1f);
-        print("up");
+        SoundManager.PlaySound(SoundManager.Sound.Spike_up);
+        up = true;
         yield return new WaitForSeconds(2f);
         start = true;
+    }
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        print(up);
+        print("ccccccccccccccccccc");
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().WakeUp();
+            bool invicibility = collision.gameObject.GetComponent<PlayerManager>().invincibilty;
+            if (up && invicibility==false)
+            {
+                SignalSpike?.Invoke();
+            }
+        }
     }
 
 }

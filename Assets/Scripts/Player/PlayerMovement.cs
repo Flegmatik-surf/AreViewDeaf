@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private MapManager mapManager;
+    public bool isMoving;
 
     // Start is called before the first frame update//
     void Start()
@@ -25,9 +26,16 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
-        speed = mapManager.GetTileWalkingSpeed(transform.position);
+    { 
+        try
+        {
+            speed = mapManager.GetTileWalkingSpeed(transform.position);
+        }
+        catch
+        {
+            speed = 5;
+        }
+        
 
         //anim.SetFloat("Direction", 1f);
 
@@ -43,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z))
         {
-            print("grooooooooooooooooo");
             //anim.SetBool("Up", true);
             Direction = 0f;
             anim.SetFloat("Speed", 1f);
@@ -77,5 +84,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Direction", Direction);
 
         rb.velocity = new Vector2(h_input, v_input).normalized * speed;
+        if (rb.velocity.magnitude > 0.01)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 }

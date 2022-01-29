@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b796953b92434404e80ae1fc0da22d83, type: 3}
-  m_Name: TileTeleport
+  m_Name: TileStair
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: 5102c056e201f864c860530eda5851dd, type: 2}
-  - {fileID: 11400000, guid: 993f9eb1bb15d254dbe9bb56eb5405bb, type: 2}
+  - {fileID: 11400000, guid: f9a4afed81a3eb541a76829e31d52ff1, type: 2}
   walkingSpeed: 5
-  type: teleport
+  type: stair

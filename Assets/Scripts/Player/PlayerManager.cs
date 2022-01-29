@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 public class PlayerManager : MonoBehaviour
 {
+
     //health
     public HealthHeart healthHeart;
     int currentHealth;
@@ -11,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     private MapManager mapManager;
 
     //degat
-    bool invincibilty = false;
+    public bool invincibilty = false;
     int damage = 0;
 
 
@@ -19,8 +20,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+
         mapManager = FindObjectOfType<MapManager>();
-        MapManager.SignalSandDamage += OnSignalSand;
+        MapManager.SignalSandDamage += OnSignalTakeDamage;
+        Spike.SignalSpike += OnSignalTakeDamage;
 
     }
     void Start()
@@ -31,8 +34,10 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mapManager.Effect(transform.position);      
-    }
+        try{ mapManager.Effect(transform.position); }
+        catch { }
+
+        }
 
 
     void TakeDamage(int damage)
@@ -61,8 +66,15 @@ public class PlayerManager : MonoBehaviour
         yield return null;
     }
 
-    private void OnSignalSand()
+    private void OnSignalTakeDamage()
     {
+        print("ssssssssssssssssssssssssssssssss");
         TakeDamage(1);
+    }
+
+    private void OnDestroy()
+    {
+        MapManager.SignalSandDamage -= OnSignalTakeDamage;
+        Spike.SignalSpike -= OnSignalTakeDamage;
     }
 }
