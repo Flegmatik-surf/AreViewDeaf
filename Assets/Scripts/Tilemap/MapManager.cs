@@ -95,6 +95,11 @@ public class MapManager : MonoBehaviour
         
     }
 
+    void Spike()
+    {
+
+    }
+
     IEnumerator SandDamage(int cooldown)
     {
         inSand = true;
