@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b796953b92434404e80ae1fc0da22d83, type: 3}
   m_Name: TileWall
   m_EditorClassIdentifier: 
-  tiles: []
+  tiles:
+  - {fileID: 11400000, guid: f019f3a83b6706b48b66303461a123cb, type: 2}
   walkingSpeed: 0
-  type: 
+  type: wall

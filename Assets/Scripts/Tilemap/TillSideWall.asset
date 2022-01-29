@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b796953b92434404e80ae1fc0da22d83, type: 3}
   m_Name: TillSideWall
   m_EditorClassIdentifier: 
-  tiles: []
-  walkingSpeed: 0
-  type: 
+  tiles:
+  - {fileID: 11400000, guid: 0d6f3439a0603ed4db49c6e577e696e8, type: 2}
+  walkingSpeed: 5
+  type: donjon
