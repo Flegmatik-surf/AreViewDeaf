@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sounds/Vrac/gravel_walk.wav.meta
 guid: a765407593dc8e846a7ce99d917b959f
+=======
+guid: 7293b9a53e0d74662b9fcf1d88dae51f
+>>>>>>> 78397dc3f77ffa6225e6da3107cfe729856ba767:Assets/Sounds/gravel_walk.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
