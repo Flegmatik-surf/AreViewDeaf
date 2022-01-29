@@ -43,10 +43,10 @@ public class MapManager : MonoBehaviour
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
 
-        if (dataFromTile[tile].type == "sand")
+        if (dataFromTile[tile].type == "sandScorpio")
         {
             
-            Sand();
+            SandScorpio();
         }
         else {
             inSand = false;
@@ -55,7 +55,7 @@ public class MapManager : MonoBehaviour
 
     }
 
-    void Sand()
+    void SandScorpio()
     {
         if (!inSand) {
             StartCoroutine(SandDamage(5));
