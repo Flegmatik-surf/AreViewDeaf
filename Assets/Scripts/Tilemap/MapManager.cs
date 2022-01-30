@@ -63,6 +63,7 @@ public class MapManager : MonoBehaviour
                 {
                     number = (number + 1) % (soundSand.Length);
                     StartCoroutine(SoundCooldown(soundSand[number]));
+                    StartCoroutine(SoundCooldown(SoundManager.Sound.Scorpio_Attack));
                 }
                 SandScorpio();
             }
