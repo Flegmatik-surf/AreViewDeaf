@@ -24,6 +24,8 @@ public class PlayerManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         MapManager.SignalSandDamage += OnSignalTakeDamage;
         Spike.SignalSpike += OnSignalTakeDamage;
+        LaserSource.SignalLaser += OnSignalTakeDamage;
+        Patrol.SignalPatrol += OnSignalTakeDamage;
         //Fader fader = FindObjectOfType<Fader>();
     }
     void Start()
@@ -77,6 +79,8 @@ public class PlayerManager : MonoBehaviour
     {
         MapManager.SignalSandDamage -= OnSignalTakeDamage;
         Spike.SignalSpike -= OnSignalTakeDamage;
+        LaserSource.SignalLaser -= OnSignalTakeDamage;
+        Patrol.SignalPatrol -= OnSignalTakeDamage;
     }
 
 
