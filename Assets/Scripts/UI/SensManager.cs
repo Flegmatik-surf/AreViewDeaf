@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class SensManager : MonoBehaviour
 
     bool canSwitch = true;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Teleport.RoomSwitchSignal += OnRoomSwitchSignal;
+    }
 
     void Start()
     {
@@ -37,22 +43,36 @@ public class SensManager : MonoBehaviour
             }
         }
 
-        IEnumerator BlindToSee(float time)
-        {
-            canSwitch = false;
-            fader.FadeInGlobal(1f);
-            yield return new WaitForSeconds(time);
-            fader.FadeOutGlobal(1f);
-            canSwitch = true;
-        }
+    }
 
-        IEnumerator SeeToBlind(float time)
+    IEnumerator BlindToSee(float time)
+    {
+        canSwitch = false;
+        fader.FadeInGlobal(1f);
+        yield return new WaitForSeconds(time);
+        fader.FadeOutGlobal(1f);
+        canSwitch = true;
+    }
+
+    IEnumerator SeeToBlind(float time)
+    {
+        canSwitch = false;
+        fader.FadeOutGlobal(1f);
+        yield return new WaitForSeconds(time);
+        fader.FadeInGlobal(1f);
+        canSwitch = true;
+    }
+
+    private void OnRoomSwitchSignal(bool startingState)
+    {
+        see = startingState;
+        if (see)
         {
-            canSwitch = false;
-            fader.FadeOutGlobal(1f);
-            yield return new WaitForSeconds(time);
             fader.FadeInGlobal(1f);
-            canSwitch = true;
+        }
+        else
+        {
+            fader.FadeOutGlobal(1f);
         }
     }
 }
