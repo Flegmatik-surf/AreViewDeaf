@@ -14,8 +14,9 @@ public class PlayerManager : MonoBehaviour
     //degat
     public bool invincibilty = false;
     int damage = 0;
+    [SerializeField] private int deathScene; 
+    [SerializeField] private Fader fader;
 
-    [SerializeField]private Fader fader;
 
 
     private void Awake()
@@ -40,8 +41,7 @@ public class PlayerManager : MonoBehaviour
         catch { }
         if (currentHealth <= 0)
         {
-            SoundManager.PlaySound(SoundManager.Sound.Human);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+             UnityEngine.SceneManagement.SceneManager.LoadScene(deathScene);
         }
         
 

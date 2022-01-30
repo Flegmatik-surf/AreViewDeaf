@@ -70,7 +70,7 @@ public class MapManager : MonoBehaviour
             else
             {
                 inSand = false;
-                StopCoroutine(SandDamage(10));
+                StopCoroutine(SandDamage(2));
                 if (dataFromTile[tile].type == "sand" && isMoving)
                 {
                     SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
