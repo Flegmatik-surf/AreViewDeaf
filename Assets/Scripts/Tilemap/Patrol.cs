@@ -12,8 +12,11 @@ public class Patrol : MonoBehaviour
     private float dist;
 
     public char orientation;
+    float animation;
 
     public static event Action SignalPatrol;
+    [SerializeField] private Animator anim;
+
 
     void Start()
     {
@@ -36,25 +39,35 @@ public class Patrol : MonoBehaviour
     {
         Vector2 direction = (waypoints[waypointIndex].position - transform.position).normalized;
 
+        /*
+        if (Math.Abs(direction.x) < Math.Abs(direction.y))
+        {
+            if (direction.y > 0)
+            {
+                orientation = 'U';
+                anim.SetFloat("MonsterDirection", 0f);
+            } else
+            {
+                orientation = 'D';
+                anim.SetFloat("MonsterDirection", 1f);
 
-        //if (Math.Abs(direction.x) < Math.Abs(direction.y))
-        //{
-        //    if (direction.y > 0)
-        //    {
-        //        orientation = 'U';
-        //    } else
-        //    {
-        //        orientation = 'D';
-        //    }
-        //} else {
-        //    if (direction.x > 0)
-        //    {
-        //        orientation = 'R';
-        //    } else
-        //    {
-        //        orientation = 'L';
-        //    }
-        //}
+            }
+        } else {
+            if (direction.x > 0)
+            {
+                orientation = 'R';
+                anim.SetFloat("MonsterDirection", 3f);
+
+            }
+            else
+            {
+                orientation = 'L';
+                anim.SetFloat("MonsterDirection", 2f);
+
+            }
+        }
+        */
+        //print(orientation);
         transform.Translate(direction * speed * Time.deltaTime);
         if (dist < 0.1f)
         {
@@ -69,27 +82,43 @@ public class Patrol : MonoBehaviour
                 if (haut_bas > gauche_droite)
                 {
                     orientation = 'U';
+                    animation = 0f;
                 }
                 else if (haut_bas < 0 && -haut_bas > gauche_droite)
                 {
                     orientation = 'D';
+                    animation = 1f;
                 }
-                else { orientation = 'R'; }
+                else 
+                { 
+                    orientation = 'R';
+                    print(orientation);
+                    animation = 3f;
+                }
             }
             else
             {
                 if (haut_bas > -gauche_droite)
                 {
                     orientation = 'U';
+                    animation = 0f;
+
                 }
                 else if (haut_bas < 0 && -haut_bas > -gauche_droite)
                 {
                     orientation = 'D';
+                    animation = 1f;
                 }
-                else { orientation = 'L'; }
+                else 
+                { 
+                    orientation = 'L';
+                    animation = 2f;
+                    print(orientation);
+                }
             }
-            print(orientation);
         }
+        anim.SetFloat("animonster",animation);
+
     }
 
     void IncreaseIndex()
