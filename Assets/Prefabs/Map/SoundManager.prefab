@@ -128,3 +128,9 @@ MonoBehaviour:
   - sfxMixer: {fileID: 24100000, guid: e74bb0766517e49fcaddc7aa3ded7b74, type: 2}
     sound: 28
     audioClip: {fileID: 8300000, guid: 003fcb9e9d7494e64afe4620b750244d, type: 3}
+  - sfxMixer: {fileID: 24100000, guid: e74bb0766517e49fcaddc7aa3ded7b74, type: 2}
+    sound: 28
+    audioClip: {fileID: 8300000, guid: 003fcb9e9d7494e64afe4620b750244d, type: 3}
+  - sfxMixer: {fileID: 24100000, guid: e74bb0766517e49fcaddc7aa3ded7b74, type: 2}
+    sound: 29
+    audioClip: {fileID: 8300000, guid: f03a4b06d6d23504f8d229adebdf5d79, type: 3}
