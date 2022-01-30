@@ -671,6 +671,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1409700104729143762, guid: 033787cbfcf8b0a4f972a2ed35c7acb2, type: 3}
+      propertyPath: nextScene
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1409700104729143763, guid: 033787cbfcf8b0a4f972a2ed35c7acb2, type: 3}
       propertyPath: m_Name
       value: Stair
@@ -3548,6 +3552,10 @@ PrefabInstance:
       propertyPath: teleport
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 466208698300875429, guid: 45f0641d1cbcc7e4aad81022743bcd6a, type: 3}
+      propertyPath: nextScene
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 466208698300875430, guid: 45f0641d1cbcc7e4aad81022743bcd6a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3668,7 +3676,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: d6a8720a3bbb70e4081756636fef9b7f, type: 3}
     - target: {fileID: 8317663669459468341, guid: 738fbfe64b03a43098daf4b3037a00b6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8317663669459468341, guid: 738fbfe64b03a43098daf4b3037a00b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3752,7 +3760,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

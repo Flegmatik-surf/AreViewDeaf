@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stair : MonoBehaviour
 {
-    [SerializeField] private int nextScene=0;
+    [SerializeField] private int nextScene;
+
     private void OnTriggerEnter2D(Collider2D collision) { 
         if (collision.gameObject.tag == "Player")
         {
