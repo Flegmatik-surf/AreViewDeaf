@@ -92,7 +92,33 @@ public class MapManager : MonoBehaviour
                 }
                 if (dataFromTile[tile].type == "grass" && isMoving)
                 {
-
+                    SoundManager.Sound[] sound= { SoundManager.Sound.Grass_1, SoundManager.Sound.Grass_2, SoundManager.Sound.Grass_3 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
+                }
+                if (dataFromTile[tile].type == "winter" && isMoving)
+                {
+                    SoundManager.Sound[] sound = { SoundManager.Sound.Snow_1, SoundManager.Sound.Snow2 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
+                }
+                if (dataFromTile[tile].type == "water" && isMoving)
+                {
+                    SoundManager.Sound[] sound = { SoundManager.Sound.Water_1, SoundManager.Sound.Water_2 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
                 }
             }
         }

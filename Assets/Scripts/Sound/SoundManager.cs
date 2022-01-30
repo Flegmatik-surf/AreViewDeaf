@@ -11,7 +11,9 @@ public static class SoundManager
 
 
         //Sound Effects
-        Sand_1, Sand_2, Sand_3, Donjon_1, Donjon_2, Donjon_3, Spike_up, Spike_down, Spike_trigger
+        Sand_1, Sand_2, Sand_3, Donjon_1, Donjon_2, Donjon_3, Spike_up, Spike_down, Spike_trigger, Scorpio_Attack, Scorpio_Moving, Snow_1,Snow2,Water_1,Water_2, Portal_1,Portal_2,
+        Portal_Pass,Lion,Laser,Laser_Load,Laser_Shoot,Laser_Work,Grass_1,Grass_2,Grass_3,Horse,Snake,Human
+
     }
 
     
