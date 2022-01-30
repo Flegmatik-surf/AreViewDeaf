@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,21 +11,27 @@ public class LaserSource : MonoBehaviour
     [SerializeField] private float time_of_activation = 5f;
     [SerializeField] private float time_of_desactivation = 2f;
     [SerializeField] private LayerMask layerMaskPlayer;
+
+    [SerializeField] private float numberOfCase=1;
     private bool LaserActivated = false;
     private bool PreviousFrameStateLaser = false;
     private bool CoroutineInProgress = false;
+    private bool invicibility;
 
+    GameObject player;
 
-
+    public static event Action SignalLaser;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        invicibility = player.GetComponent<PlayerManager>().invincibilty;
+        player.GetComponent<Rigidbody2D>().WakeUp();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         lineRenderer.useWorldSpace = true;
         GameObject HitPoint = new GameObject();
         LaserHit = HitPoint.GetComponent<Transform>();
-        //Instantiate(HitPoint);
         StartCoroutine(TimingLaser(time_of_activation, time_of_desactivation));
 
     }
@@ -45,21 +52,25 @@ public class LaserSource : MonoBehaviour
         //print("Laser Source : LaserActivated " + LaserActivated);
         //print("Laser Source : PreviousFrameStateLaser " + PreviousFrameStateLaser);
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, 10f ,layerMaskPlayer);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, numberOfCase*0.64f ,layerMaskPlayer);
         if ((LaserActivated) && (hitInfo))
         {
-            print("grooo t moooor");
-            //tuer joueur
+            if (invicibility == false)
+            {
+                SignalLaser?.Invoke();
+            }
         }
         if ((LaserActivated) && (!PreviousFrameStateLaser))
         {
             print("son de début laser");
+            SoundManager.PlaySound(SoundManager.Sound.Laser);
             PreviousFrameStateLaser = true; //change sauvegarde de l'état précédent
             //laser activé alors que désactiver avant -> son de démarrage laser
         }
         if ((!LaserActivated) && (PreviousFrameStateLaser))
         {
             print("son de fin laser");
+            SoundManager.PlaySound(SoundManager.Sound.Laser_Load);
             PreviousFrameStateLaser = false; //change sauvegarde de l'état précédent
             //Laser désactivé alors que activé avant -> son d'éteingnage laser
         }
@@ -74,7 +85,6 @@ public class LaserSource : MonoBehaviour
         CoroutineInProgress = true;
         LaserActivated = true;
         yield return new WaitForSeconds(time_of_activation);
-        //SignalSandDamage?.Invoke();
         LaserActivated = false;
         yield return new WaitForSeconds(time_of_desactivation);
         CoroutineInProgress = false;

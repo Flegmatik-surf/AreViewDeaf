@@ -24,6 +24,8 @@ public class PlayerManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         MapManager.SignalSandDamage += OnSignalTakeDamage;
         Spike.SignalSpike += OnSignalTakeDamage;
+        LaserSource.SignalLaser += OnSignalTakeDamage;
+        Patrol.SignalPatrol += OnSignalTakeDamage;
         //Fader fader = FindObjectOfType<Fader>();
     }
     void Start()
@@ -36,7 +38,11 @@ public class PlayerManager : MonoBehaviour
     {
         try{ mapManager.Effect(transform.position); }
         catch { }
-
+        if (currentHealth <= 0)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.Human);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+        }
         
 
     }
@@ -77,6 +83,8 @@ public class PlayerManager : MonoBehaviour
     {
         MapManager.SignalSandDamage -= OnSignalTakeDamage;
         Spike.SignalSpike -= OnSignalTakeDamage;
+        LaserSource.SignalLaser -= OnSignalTakeDamage;
+        Patrol.SignalPatrol -= OnSignalTakeDamage;
     }
 
 

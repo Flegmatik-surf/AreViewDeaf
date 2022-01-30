@@ -18,6 +18,7 @@ public class Teleport : MonoBehaviour
     {
         if (collision.gameObject.tag== "Player")
         {
+            SoundManager.PlaySound(SoundManager.Sound.Portal_Pass);
             collision.transform.position = arrival.transform.position;
             if(roomNumber == 1)
             {
