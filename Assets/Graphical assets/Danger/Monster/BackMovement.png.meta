@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 185961545f7bde94b88907e4614d3550
 TextureImporter:
   internalIDToNameTable:
@@ -9,10 +8,6 @@ TextureImporter:
   - first:
       213: 5432940104250136848
     second: BackMovement_1
-=======
-guid: e6fbf6fd5b32a41a6821c8198518d9b0
-  internalIDToNameTable: []
->>>>>>> ebc9c630d4490f84df01597e9544c4cfbba6131e
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -48,7 +43,7 @@ guid: e6fbf6fd5b32a41a6821c8198518d9b0
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -72,14 +67,14 @@ guid: e6fbf6fd5b32a41a6821c8198518d9b0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -91,7 +86,7 @@ guid: e6fbf6fd5b32a41a6821c8198518d9b0
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
