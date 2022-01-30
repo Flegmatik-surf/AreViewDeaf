@@ -12,13 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private MapManager mapManager;
     public bool isMoving;
-    private bool canMove;
+    private bool canMove=true;
 
     // Start is called before the first frame update//
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
+        canMove = true;
         AudioMixer sfxMixer = Resources.Load("Mixers/SFXMixer") as AudioMixer;
         AudioMixerGroup outputAudioMixerGroup = sfxMixer.FindMatchingGroups("Master")[0];
         print(outputAudioMixerGroup);
