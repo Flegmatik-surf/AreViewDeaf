@@ -1,0 +1,20 @@
+{
+    "lines":[
+        {
+            "italic":true,
+            "sentence":"Bonjour."
+        },
+        {
+            "italic":true,
+            "sentence":"BONJOUR !"
+        },
+        {
+            "italic":false,
+            "sentence":"ok."
+        },
+        {
+            "italic":true,
+            "sentence":"envie de clubber"
+        }
+    ]
+}
