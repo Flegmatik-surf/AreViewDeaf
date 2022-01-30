@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
     void TakeDamage(int damage)
     {
+        print("aaaaaaaaaaaaaaaaaaaaaaa");
         if (invincibilty == false)
         {
             StartCoroutine(Invicible(3));
