@@ -26,7 +26,7 @@ public class PlateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        StartCoroutine(Enigme() );
     }
     void MakePlateDown()
     {
@@ -53,5 +53,10 @@ public class PlateScript : MonoBehaviour
     private void OnDestroy()
     {
         ControllerScript.ResetSignal -= MakePlateUp;
+    }
+
+    IEnumerator Enigme()
+    {
+        yield return null;
     }
 }
