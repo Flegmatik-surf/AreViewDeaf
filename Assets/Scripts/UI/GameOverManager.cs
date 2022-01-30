@@ -13,7 +13,7 @@ public class GameOverManager : MonoBehaviour
     {
         clicButtonAudioSource = GetComponent<AudioSource>();
         print(clicButtonAudioSource);
-        //savedScene = PlayerPrefs.GetInt("savedLevel");
+        savedScene = PlayerPrefs.GetInt("savedLevel");
     }
 
     public void ContinueGame()

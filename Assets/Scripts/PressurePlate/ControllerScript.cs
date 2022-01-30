@@ -11,12 +11,13 @@ public class ControllerScript : MonoBehaviour
     // Start is called before the first frame update
     public static event Action ResetSignal;
     bool restart = true;
-    [SerializeField] GameObject teleport;
+    [SerializeField] private int nextScene;
+    //[SerializeField] GameObject teleport;
 
     private void Awake()
     {
         PlateScript.ThePlateActivate += OnReceptionOfSignal;
-        teleport.gameObject.GetComponent <Collider2D>().isTrigger = false;
+        //teleport.gameObject.GetComponent <Collider2D>().isTrigger = false;
     }
     void Start()
     {
@@ -34,14 +35,14 @@ public class ControllerScript : MonoBehaviour
         {
             if (sequence == solution )
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
             }
             else
             {
                 //signal pour faire reset les plates 
                 sequence = "";
                 ResetSignal?.Invoke();
-                print("Signal de Reset envoyé");
+                print("Signal de Reset envoy?");
             }
         }
     }

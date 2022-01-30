@@ -82,6 +82,7 @@ public class SensManagerScripted : MonoBehaviour
     {
         Teleport.RoomOneScriptedSignal -= OnRoomOneSignal;
         Teleport.RoomSwitchSignal -= OnRoomSwitchSignal;
+        SceneManagerScript.startSceneSignal -= OnStartingScene;
     }
 
     private void OnStartingScene(int sceneIndex)

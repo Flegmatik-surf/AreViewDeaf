@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioMixer musicAudioMixer;
     [SerializeField] private AudioMixer sfxAudioMixer;
     [SerializeField] private float defaultVolume = 0f;
+    [SerializeField] private GameObject buttonContinue;
     private int defaultResolution;
 
 
@@ -26,6 +27,16 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        if(PlayerPrefs.GetInt("firstLaunch") != 1)
+        {
+            PlayerPrefs.SetInt("firstLaunch", 1);
+            buttonContinue.SetActive(false);
+        }
+        else
+        {
+            buttonContinue.SetActive(true);
+        }
+
         clicButtonAudioSource = GetComponent<AudioSource>();
         print(clicButtonAudioSource);
 
@@ -58,7 +69,7 @@ public class MainMenuManager : MonoBehaviour
     {
         clicButtonAudioSource.Play();
         print("Yeahhh let's continue");
-        //savedScene = PlayerPrefs.GetInt("savedLevel");
+        savedScene = PlayerPrefs.GetInt("savedLevel");
         UnityEngine.SceneManagement.SceneManager.LoadScene(savedScene);
     }
 

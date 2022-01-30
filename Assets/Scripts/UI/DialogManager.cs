@@ -12,11 +12,14 @@ public class DialogManager : MonoBehaviour
     private int line_index;
     private Dialog dialog;
     [SerializeField] private TMP_Text textContainer;
+    [SerializeField] private int nextScene;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        JSONString = File.ReadAllText(Application.dataPath + "\\Resources\\Dialogs\\" + path);
+        print("je suis là !");
+        JSONString = File.ReadAllText(Application.dataPath + "/Resources/Dialogs/" + path);
         print(JSONString);
         dialog = JsonUtility.FromJson<Dialog>(JSONString);
         foreach (Line line in dialog)
@@ -38,7 +41,10 @@ public class DialogManager : MonoBehaviour
             line_index++;
             if(line_index >= dialog.lines.Length){
                 textContainer.SetText("");
+                print("yeaaah");
+                UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
                 return;
+
             }
             textContainer.SetText(dialog.lines[line_index].sentence);
             if(dialog.lines[line_index].italic){
