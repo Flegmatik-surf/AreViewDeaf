@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SceneManagerScript : MonoBehaviour
     void Start()
     {
         startSceneSignal?.Invoke(indexLevel);
+        PlayerPrefs.SetInt("savedLevel", SceneManager.GetActiveScene().buildIndex);
     }
 
 }

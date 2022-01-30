@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 185961545f7bde94b88907e4614d3550
 TextureImporter:
   internalIDToNameTable:
@@ -8,6 +9,10 @@ TextureImporter:
   - first:
       213: 5432940104250136848
     second: BackMovement_1
+=======
+guid: e6fbf6fd5b32a41a6821c8198518d9b0
+  internalIDToNameTable: []
+>>>>>>> ebc9c630d4490f84df01597e9544c4cfbba6131e
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
