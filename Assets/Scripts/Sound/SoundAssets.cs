@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SoundAssets : MonoBehaviour
@@ -12,6 +13,7 @@ public class SoundAssets : MonoBehaviour
     [System.Serializable]
     public class SoundAudioClip
     {
+        public AudioMixer sfxMixer;
         public SoundManager.Sound sound;
         public AudioClip audioClip;
     }
