@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private MapManager mapManager;
     public bool isMoving;
+    private bool canMove=true;
 
     // Start is called before the first frame update//
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
+        canMove = true;
         AudioMixer sfxMixer = Resources.Load("Mixers/SFXMixer") as AudioMixer;
         AudioMixerGroup outputAudioMixerGroup = sfxMixer.FindMatchingGroups("Master")[0];
         print(outputAudioMixerGroup);
@@ -25,6 +28,28 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         mapManager = FindObjectOfType<MapManager>();
+        SceneManagerScript.startSceneSignal += OnStartingScene;
+        Teleport.RoomOneScriptedSignal += OnScriptedRoomOneChange;
+    }
+
+    private void OnScriptedRoomOneChange(float time)
+    {
+        StartCoroutine(FreezePlayer(time));
+    }
+
+    private void OnStartingScene(int sceneIndex)
+    {
+        if(sceneIndex == 1)
+        {
+            StartCoroutine(FreezePlayer(5f));
+        }
+    }
+
+    private IEnumerator FreezePlayer(float time)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(time);
+        canMove = true;
     }
 
 
@@ -52,49 +77,51 @@ public class PlayerMovement : MonoBehaviour
         //anim.SetBool("Left", false);
         //anim.SetBool("Right", false);
 
-
-        if (Input.GetKey(KeyCode.Z))
+        if (canMove)
         {
-            //anim.SetBool("Up", true);
-            Direction = 0f;
-            anim.SetFloat("Speed", 1f);
-            v_input += 1;
-        }
+            if (Input.GetKey(KeyCode.Z))
+            {
+                //anim.SetBool("Up", true);
+                Direction = 0f;
+                anim.SetFloat("Speed", 1f);
+                v_input += 1;
+            }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            //anim.SetBool("Down", true);
-            Direction = 1f;
-            anim.SetFloat("Speed", 1f);
-            v_input -= 1;
-        }
+            if (Input.GetKey(KeyCode.S))
+            {
+                //anim.SetBool("Down", true);
+                Direction = 1f;
+                anim.SetFloat("Speed", 1f);
+                v_input -= 1;
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            //anim.SetBool("Right", true);
-            Direction = 3f;
-            anim.SetFloat("Speed", 1f);
-            h_input += 1;
-        }
+            if (Input.GetKey(KeyCode.D))
+            {
+                //anim.SetBool("Right", true);
+                Direction = 3f;
+                anim.SetFloat("Speed", 1f);
+                h_input += 1;
+            }
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            //anim.SetBool("Left", true);
-            Direction = 2f;
-            anim.SetFloat("Speed", 1f);
-            h_input -= 1;
-        }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                //anim.SetBool("Left", true);
+                Direction = 2f;
+                anim.SetFloat("Speed", 1f);
+                h_input -= 1;
+            }
 
-        anim.SetFloat("Direction", Direction);
+            anim.SetFloat("Direction", Direction);
 
-        rb.velocity = new Vector2(h_input, v_input).normalized * speed;
-        if (rb.velocity.magnitude > 0.01)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
+            rb.velocity = new Vector2(h_input, v_input).normalized * speed;
+            if (rb.velocity.magnitude > 0.01)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
     }
 }
