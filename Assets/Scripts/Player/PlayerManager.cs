@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public bool invincibilty = false;
     int damage = 0;
 
-
+    [SerializeField]private Fader fader;
 
 
     private void Awake()
@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         MapManager.SignalSandDamage += OnSignalTakeDamage;
         Spike.SignalSpike += OnSignalTakeDamage;
-
+        //Fader fader = FindObjectOfType<Fader>();
     }
     void Start()
     {
@@ -37,8 +37,9 @@ public class PlayerManager : MonoBehaviour
         try{ mapManager.Effect(transform.position); }
         catch { }
 
-        }
+        
 
+    }
 
     void TakeDamage(int damage)
     {
@@ -76,5 +77,19 @@ public class PlayerManager : MonoBehaviour
     {
         MapManager.SignalSandDamage -= OnSignalTakeDamage;
         Spike.SignalSpike -= OnSignalTakeDamage;
+    }
+
+
+    private IEnumerator FadeIn(float time)
+    {
+        Fader fader = FindObjectOfType<Fader>();
+       yield return fader.FadeIn(time);
+
+    }
+    private IEnumerator FadeOut(float time)
+    {
+        Fader fader = FindObjectOfType<Fader>();
+        yield return fader.FadeOut(time);
+
     }
 }

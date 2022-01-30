@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
+        AudioMixer sfxMixer = Resources.Load("Mixers/SFXMixer") as AudioMixer;
+        AudioMixerGroup outputAudioMixerGroup = sfxMixer.FindMatchingGroups("Master")[0];
+        print(outputAudioMixerGroup);
     }
 
     private void Awake()
