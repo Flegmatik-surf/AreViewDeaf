@@ -19,7 +19,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         print("je suis là !");
-        JSONString = File.ReadAllText(Application.dataPath + "/Resources/Dialogs/" + path);
+        JSONString = File.ReadAllText(Application.streamingAssetsPath + "/Dialogs/" + path);
         print(JSONString);
         dialog = JsonUtility.FromJson<Dialog>(JSONString);
         foreach (Line line in dialog)
