@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: 5102c056e201f864c860530eda5851dd, type: 2}
+  - {fileID: 11400000, guid: 993f9eb1bb15d254dbe9bb56eb5405bb, type: 2}
   walkingSpeed: 5
   type: teleport

@@ -18,6 +18,9 @@ public class MapManager : MonoBehaviour
     //sound
     bool isPlaying=false;
 
+    //player
+    GameObject player;
+    bool isMoving;
 
     private void Awake()
     {
@@ -29,8 +32,14 @@ public class MapManager : MonoBehaviour
                 dataFromTile.Add(tile, tileData);
             }
         }
+        player= GameObject.FindGameObjectWithTag("Player");
+        
     }
-    
+
+    private void Update()
+    {
+        isMoving = player.GetComponent<PlayerMovement>().isMoving;
+    }
     public float GetTileWalkingSpeed(Vector2 worldPosition)
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
@@ -44,22 +53,9 @@ public class MapManager : MonoBehaviour
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
+        if (tile) {
 
-        if (dataFromTile[tile].type == "sandScorpio")
-        {
-            SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
-            int number = 0;
-            if (!isPlaying)
-            {
-                number = (number + 1) % (soundSand.Length);
-                StartCoroutine(SoundCooldown(soundSand[number]));
-            }
-            SandScorpio();
-        }
-        else {
-            inSand = false;
-            StopCoroutine(SandDamage(10));
-            if (dataFromTile[tile].type == "sand")
+            if (dataFromTile[tile].type == "sandScorpio" && isMoving)
             {
                 SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
                 int number = 0;
@@ -68,20 +64,62 @@ public class MapManager : MonoBehaviour
                     number = (number + 1) % (soundSand.Length);
                     StartCoroutine(SoundCooldown(soundSand[number]));
                 }
+                SandScorpio();
             }
-            if (dataFromTile[tile].type == "donjon")
+            else
             {
-                SoundManager.Sound[] soundSand = { SoundManager.Sound.Donjon_1, SoundManager.Sound.Donjon_2, SoundManager.Sound.Donjon_3 };
-                int number = 0;
-                if (!isPlaying)
+                inSand = false;
+                StopCoroutine(SandDamage(10));
+                if (dataFromTile[tile].type == "sand" && isMoving)
                 {
-                    number = (number + 1) % (soundSand.Length);
-                    StartCoroutine(SoundCooldown(soundSand[number]));
+                    SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (soundSand.Length);
+                        StartCoroutine(SoundCooldown(soundSand[number]));
+                    }
                 }
-            }
-            if (dataFromTile[tile].type == "grass")
-            {
-
+                if (dataFromTile[tile].type == "donjon" && isMoving)
+                {
+                    SoundManager.Sound[] soundSand = { SoundManager.Sound.Donjon_1, SoundManager.Sound.Donjon_2, SoundManager.Sound.Donjon_3 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (soundSand.Length);
+                        StartCoroutine(SoundCooldown(soundSand[number]));
+                    }
+                }
+                if (dataFromTile[tile].type == "grass" && isMoving)
+                {
+                    SoundManager.Sound[] sound= { SoundManager.Sound.Grass_1, SoundManager.Sound.Grass_2, SoundManager.Sound.Grass_3 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
+                }
+                if (dataFromTile[tile].type == "winter" && isMoving)
+                {
+                    SoundManager.Sound[] sound = { SoundManager.Sound.Snow_1, SoundManager.Sound.Snow2 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
+                }
+                if (dataFromTile[tile].type == "water" && isMoving)
+                {
+                    SoundManager.Sound[] sound = { SoundManager.Sound.Water_1, SoundManager.Sound.Water_2 };
+                    int number = 0;
+                    if (!isPlaying)
+                    {
+                        number = (number + 1) % (sound.Length);
+                        StartCoroutine(SoundCooldown(sound[number]));
+                    }
+                }
             }
         }
 
@@ -93,6 +131,11 @@ public class MapManager : MonoBehaviour
             StartCoroutine(SandDamage(5));
         }
         
+    }
+
+    void Spike()
+    {
+
     }
 
     IEnumerator SandDamage(int cooldown)
