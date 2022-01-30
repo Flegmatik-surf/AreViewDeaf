@@ -10,6 +10,7 @@ public class PlateScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     [SerializeField] int indexOfPlate;
     private bool activated = false;
+    
 
     public static event Action<int> ThePlateActivate;
 
@@ -26,6 +27,7 @@ public class PlateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         
     }
     void MakePlateDown()
@@ -54,4 +56,6 @@ public class PlateScript : MonoBehaviour
     {
         ControllerScript.ResetSignal -= MakePlateUp;
     }
+
+    
 }
