@@ -8,14 +8,16 @@ public class PlayerManager : MonoBehaviour
     //health
     public HealthHeart healthHeart;
     int currentHealth;
+
     //map
     private MapManager mapManager;
 
     //degat
     public bool invincibilty = false;
     int damage = 0;
+
+    //indice de la scene à load si on meurt
     [SerializeField] private int deathScene; 
-    [SerializeField] private Fader fader;
 
 
 
@@ -27,7 +29,6 @@ public class PlayerManager : MonoBehaviour
         Spike.SignalSpike += OnSignalTakeDamage;
         LaserSource.SignalLaser += OnSignalTakeDamage;
         Patrol.SignalPatrol += OnSignalTakeDamage;
-        //Fader fader = FindObjectOfType<Fader>();
     }
     void Start()
     {
@@ -88,17 +89,4 @@ public class PlayerManager : MonoBehaviour
         Patrol.SignalPatrol -= OnSignalTakeDamage;
     }
 
-
-    private IEnumerator FadeIn(float time)
-    {
-        Fader fader = FindObjectOfType<Fader>();
-       yield return fader.FadeIn(time);
-
-    }
-    private IEnumerator FadeOut(float time)
-    {
-        Fader fader = FindObjectOfType<Fader>();
-        yield return fader.FadeOut(time);
-
-    }
 }

@@ -56,15 +56,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        try
-        {
-            speed = mapManager.GetTileWalkingSpeed(transform.position);
-        }
-        catch
-        {
-            speed = 5;
-        }
-        
+
 
         //anim.SetFloat("Direction", 1f);
 
@@ -79,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
         {
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetKey(KeyCode.Z)||Input.GetKey(KeyCode.UpArrow))
             {
                 //anim.SetBool("Up", true);
                 Direction = 0f;
@@ -87,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 v_input += 1;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 //anim.SetBool("Down", true);
                 Direction = 1f;
@@ -95,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
                 v_input -= 1;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 //anim.SetBool("Right", true);
                 Direction = 3f;
@@ -103,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 h_input += 1;
             }
 
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
             {
                 //anim.SetBool("Left", true);
                 Direction = 2f;

@@ -129,13 +129,11 @@ public class Fader : MonoBehaviour
 
     public void FadeInGlobal(float time)
     {
-        print("ooooooooooooooooooo");
         StartCoroutine(FadeIn(time));
     }
 
     public void FadeOutGlobal(float time)
     {
-        print("aaaaaaaaaaaa");
         StartCoroutine(FadeOut(time));
     }
 

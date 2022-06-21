@@ -22,11 +22,11 @@ public class SensManagerScripted : MonoBehaviour
     {
         if (see)
         {
-            fader.FadeInGlobal(1f);
+            //fader.FadeInGlobal(1f);
         }
         else
         {
-            fader.FadeOutGlobal(1f);
+            //fader.FadeOutGlobal(1f);
         }
     }
 
@@ -87,9 +87,12 @@ public class SensManagerScripted : MonoBehaviour
 
     private void OnStartingScene(int sceneIndex)
     {
-        if(sceneIndex == 1)
+        //Premiere salle d'introduction, on voit et on entends
+        if(sceneIndex == 2)
         {
-            StartCoroutine(BlindToSee(5f));
+            fader.FadeInSound(0);
+            fader.FadeInGraphic(0);
+
         }
         else if(sceneIndex == 2)
         {
