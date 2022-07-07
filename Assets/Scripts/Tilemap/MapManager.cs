@@ -53,9 +53,9 @@ public class MapManager : MonoBehaviour
     {
         Vector3Int gridPosition = map.WorldToCell(worldPosition);
         TileBase tile = map.GetTile(gridPosition);
-        if (tile) {
+        if (tile && isMoving) {
 
-            if (dataFromTile[tile].type == "sandScorpio" && isMoving)
+            if (dataFromTile[tile].type == "sandScorpio")
             {
                 SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
                 int number = 0;
@@ -67,11 +67,11 @@ public class MapManager : MonoBehaviour
                 }
                 SandScorpio();
             }
-            else
+            else if(isMoving)
             {
                 inSand = false;
                 StopCoroutine(SandDamage(2));
-                if (dataFromTile[tile].type == "sand" && isMoving)
+                if (dataFromTile[tile].type == "sand")
                 {
                     SoundManager.Sound[] soundSand = { SoundManager.Sound.Sand_1, SoundManager.Sound.Sand_2, SoundManager.Sound.Sand_3 };
                     int number = 0;
@@ -81,7 +81,7 @@ public class MapManager : MonoBehaviour
                         StartCoroutine(SoundCooldown(soundSand[number]));
                     }
                 }
-                if (dataFromTile[tile].type == "donjon" && isMoving)
+                if (dataFromTile[tile].type == "donjon")
                 {
                     SoundManager.Sound[] soundSand = { SoundManager.Sound.Donjon_1, SoundManager.Sound.Donjon_2, SoundManager.Sound.Donjon_3 };
                     int number = 0;
@@ -91,7 +91,7 @@ public class MapManager : MonoBehaviour
                         StartCoroutine(SoundCooldown(soundSand[number]));
                     }
                 }
-                if (dataFromTile[tile].type == "grass" && isMoving)
+                if (dataFromTile[tile].type == "grass")
                 {
                     SoundManager.Sound[] sound= { SoundManager.Sound.Grass_1, SoundManager.Sound.Grass_2, SoundManager.Sound.Grass_3 };
                     int number = 0;
@@ -101,7 +101,7 @@ public class MapManager : MonoBehaviour
                         StartCoroutine(SoundCooldown(sound[number]));
                     }
                 }
-                if (dataFromTile[tile].type == "winter" && isMoving)
+                if (dataFromTile[tile].type == "winter")
                 {
                     SoundManager.Sound[] sound = { SoundManager.Sound.Snow_1, SoundManager.Sound.Snow2 };
                     int number = 0;
@@ -111,7 +111,7 @@ public class MapManager : MonoBehaviour
                         StartCoroutine(SoundCooldown(sound[number]));
                     }
                 }
-                if (dataFromTile[tile].type == "water" && isMoving)
+                if (dataFromTile[tile].type == "water")
                 {
                     SoundManager.Sound[] sound = { SoundManager.Sound.Water_1, SoundManager.Sound.Water_2 };
                     int number = 0;
@@ -142,7 +142,6 @@ public class MapManager : MonoBehaviour
     IEnumerator SandDamage(int cooldown)
     {
         inSand = true;
-        yield return new WaitForSeconds(cooldown);
         SignalSandDamage?.Invoke();
         inSand = false;
         yield return null;

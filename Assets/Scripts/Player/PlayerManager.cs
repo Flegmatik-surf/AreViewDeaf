@@ -14,10 +14,9 @@ public class PlayerManager : MonoBehaviour
 
     //degat
     public bool invincibilty = false;
-    int damage = 0;
 
     //indice de la scene à load si on meurt
-    [SerializeField] private int deathScene; 
+    [SerializeField] private int deathScene;
 
 
 
@@ -27,33 +26,38 @@ public class PlayerManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         MapManager.SignalSandDamage += OnSignalTakeDamage;
         Spike.SignalSpike += OnSignalTakeDamage;
-        LaserSource.SignalLaser += OnSignalTakeDamage;
+        LaserSource.SignalLaser += OnSignalTakeMoreDamage;
+        NewLaserSource.SignalLaser += OnSignalTakeMoreDamage;
         Patrol.SignalPatrol += OnSignalTakeDamage;
     }
     void Start()
     {
-        currentHealth = healthHeart.numberOfHearth;
+        //currentHealth = healthHeart.numberOfHearth;
+        currentHealth= HPsaver.Instance.HP;
+    }
+
+    public void SavePlayer()
+    {
+        HPsaver.Instance.HP = currentHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(currentHealth);
         try{ mapManager.Effect(transform.position); }
         catch { }
         if (currentHealth <= 0)
         {
              UnityEngine.SceneManagement.SceneManager.LoadScene(deathScene);
         }
-        
 
     }
 
     void TakeDamage(int damage)
     {
-        print("aaaaaaaaaaaaaaaaaaaaaaa");
         if (invincibilty == false)
         {
-            StartCoroutine(Invicible(3));
             if (currentHealth - damage < 0)
             {
                 currentHealth = 0;
@@ -64,7 +68,10 @@ public class PlayerManager : MonoBehaviour
             }
 
             healthHeart.health = currentHealth;
+            SavePlayer();
+            StartCoroutine(Invicible(1));
         }
+
     }
 
     IEnumerator Invicible(int cooldown)
@@ -77,15 +84,19 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSignalTakeDamage()
     {
-        print("ssssssssssssssssssssssssssssssss");
         TakeDamage(1);
+    }
+    private void OnSignalTakeMoreDamage()
+    {
+        TakeDamage(2);
     }
 
     private void OnDestroy()
     {
         MapManager.SignalSandDamage -= OnSignalTakeDamage;
         Spike.SignalSpike -= OnSignalTakeDamage;
-        LaserSource.SignalLaser -= OnSignalTakeDamage;
+        LaserSource.SignalLaser -= OnSignalTakeMoreDamage;
+        NewLaserSource.SignalLaser -= OnSignalTakeMoreDamage;
         Patrol.SignalPatrol -= OnSignalTakeDamage;
     }
 

@@ -1,24 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-using UnityEngine.Tilemaps;
 using System;
 
 public class Spike : MonoBehaviour
 {
-    [SerializeField] AnimatedTile tile;
-    bool start = true;
+    bool start =false;
     bool up = false;
     public static event Action SignalSpike;
-    bool isInvicibl = false;
 
 
-
+    void Start()
+    {
+        StartCoroutine(Wait());
+    }
     // Update is called once per frame
     void Update()
     {
+        print(up);
         if (start == true)
         {
             StartCoroutine(SpikeSound());
@@ -38,12 +36,15 @@ public class Spike : MonoBehaviour
         yield return new WaitForSeconds(2f);
         start = true;
     }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2f);
+        start = true;
+    }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print(up);
-        print("ccccccccccccccccccc");
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Rigidbody2D>().WakeUp();

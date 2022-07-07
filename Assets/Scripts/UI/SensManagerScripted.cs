@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SensManagerScripted : MonoBehaviour
 {
     [SerializeField] private Fader fader;
     [SerializeField] bool see = true;
     [SerializeField] float time = 10f;
-
+    GameObject player;
     // Start is called before the first frame update
 
     private void Awake()
@@ -16,33 +17,38 @@ public class SensManagerScripted : MonoBehaviour
         Teleport.RoomOneScriptedSignal += OnRoomOneSignal;
         Teleport.RoomSwitchSignal += OnRoomSwitchSignal;
         SceneManagerScript.startSceneSignal += OnStartingScene;
-    }
+        player = GameObject.FindGameObjectWithTag("Player");
 
-    void Start()
-    {
-        if (see)
-        {
-            //fader.FadeInGlobal(1f);
-        }
-        else
-        {
-            //fader.FadeOutGlobal(1f);
-        }
+
     }
 
     private void Update()
     {
-        //debogue
-        if (Input.GetKeyDown("f"))
+        //Pour la scène finale 
+        if (Input.GetKeyDown("w"))
         {
             fader.FadeInGlobal(1f);
         }
 
         //debogue
-        if (Input.GetKeyDown("g"))
+        if (Input.GetKeyDown("x"))
         {
             fader.FadeOutGlobal(1f);
         }
+        if (SceneManager.GetActiveScene().buildIndex == 10)
+        {
+            if (Input.GetKeyDown("f"))
+            {
+                fader.FadeInGlobal(1f);
+            }
+
+            //debogue
+            if (Input.GetKeyDown("g"))
+            {
+                fader.FadeOutGlobal(1f);
+            }
+        }
+
 
     }
 
@@ -94,9 +100,10 @@ public class SensManagerScripted : MonoBehaviour
             fader.FadeInGraphic(0);
 
         }
-        else if(sceneIndex == 2)
+        else
         {
-            fader.FadeOutGlobal(1f);
+            StartCoroutine(player.GetComponent<PlayerMovement>().FreezePlayer(time));
+            StartCoroutine(BlindToSee(time));
         }
     }
 }

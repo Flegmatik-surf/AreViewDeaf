@@ -10,11 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float Direction = 1f;
     private Rigidbody2D rb;
     private Animator anim;
-    private MapManager mapManager;
     public bool isMoving;
     private bool canMove=true;
 
-    // Start is called before the first frame update//
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -25,27 +23,7 @@ public class PlayerMovement : MonoBehaviour
         print(outputAudioMixerGroup);
     }
 
-    private void Awake()
-    {
-        mapManager = FindObjectOfType<MapManager>();
-        SceneManagerScript.startSceneSignal += OnStartingScene;
-        Teleport.RoomOneScriptedSignal += OnScriptedRoomOneChange;
-    }
-
-    private void OnScriptedRoomOneChange(float time)
-    {
-        StartCoroutine(FreezePlayer(time));
-    }
-
-    private void OnStartingScene(int sceneIndex)
-    {
-        if(sceneIndex == 1)
-        {
-            StartCoroutine(FreezePlayer(5f));
-        }
-    }
-
-    private IEnumerator FreezePlayer(float time)
+    public IEnumerator FreezePlayer(float time)
     {
         canMove = false;
         yield return new WaitForSeconds(time);
@@ -55,25 +33,16 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-
-
-        //anim.SetFloat("Direction", 1f);
-
+    {
         anim.SetFloat("Speed", 0f);
 
         float h_input = 0;
         float v_input = 0;
-        //anim.SetBool("Up", false);
-        //anim.SetBool("Down", false);
-        //anim.SetBool("Left", false);
-        //anim.SetBool("Right", false);
 
         if (canMove)
         {
             if (Input.GetKey(KeyCode.Z)||Input.GetKey(KeyCode.UpArrow))
             {
-                //anim.SetBool("Up", true);
                 Direction = 0f;
                 anim.SetFloat("Speed", 1f);
                 v_input += 1;
@@ -81,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
-                //anim.SetBool("Down", true);
                 Direction = 1f;
                 anim.SetFloat("Speed", 1f);
                 v_input -= 1;
@@ -89,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                //anim.SetBool("Right", true);
                 Direction = 3f;
                 anim.SetFloat("Speed", 1f);
                 h_input += 1;
@@ -97,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
             {
-                //anim.SetBool("Left", true);
                 Direction = 2f;
                 anim.SetFloat("Speed", 1f);
                 h_input -= 1;

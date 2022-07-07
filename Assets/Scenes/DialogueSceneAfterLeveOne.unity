@@ -758,7 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: 1.4_vers_2.1.json
   textContainer: {fileID: 587917144}
-  nextScene: 4
+  nextScene: 8
 --- !u!4 &1124928035
 Transform:
   m_ObjectHideFlags: 0

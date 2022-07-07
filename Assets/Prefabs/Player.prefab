@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844a8bc1ea39eb428a2acb5e56288be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 3
   isMoving: 0
 --- !u!61 &3661102985862205490
 BoxCollider2D:
@@ -181,4 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthHeart: {fileID: 6613709398847343014, guid: 00365b18b9a9e5a4881afb4609f8e2d6, type: 3}
   invincibilty: 0
-  deathScene: 8
+  deathScene: 13

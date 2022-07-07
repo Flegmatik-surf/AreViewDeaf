@@ -819,7 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: 2.1_vers_3.1.json
   textContainer: {fileID: 1506462852}
-  nextScene: 6
+  nextScene: 10
 --- !u!4 &2068202817
 Transform:
   m_ObjectHideFlags: 0

@@ -39,7 +39,6 @@ public class ControllerScript : MonoBehaviour
             }
             else
             {
-                //signal pour faire reset les plates 
                 sequence = "";
                 ResetSignal?.Invoke();
                 print("Signal de Reset envoy?");
@@ -60,19 +59,17 @@ public class ControllerScript : MonoBehaviour
     IEnumerator Enigme()
     {
         restart = false;
-        yield return new WaitForSeconds(1f);
-        SoundManager.PlaySound(SoundManager.Sound.Spike_trigger);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SoundManager.PlaySound(SoundManager.Sound.Lion);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SoundManager.PlaySound(SoundManager.Sound.Human);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SoundManager.PlaySound(SoundManager.Sound.Horse);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SoundManager.PlaySound(SoundManager.Sound.Snake);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SoundManager.PlaySound(SoundManager.Sound.Cat);
-
+        yield return new WaitForSeconds(2f);
 
 
         restart = true;

@@ -16,7 +16,6 @@ public class LaserSource : MonoBehaviour
     private bool LaserActivated = false;
     private bool PreviousFrameStateLaser = false;
     private bool CoroutineInProgress = false;
-    private bool invicibility;
 
     GameObject player;
 
@@ -25,7 +24,6 @@ public class LaserSource : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        invicibility = player.GetComponent<PlayerManager>().invincibilty;
         player.GetComponent<Rigidbody2D>().WakeUp();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
@@ -39,26 +37,19 @@ public class LaserSource : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
         Debug.DrawLine(transform.position, hit.point);
         LaserHit.position = hit.point;
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, LaserHit.position);
-        /*if(Input.GetKeyDown(KeyCode.Space))
-        {
-            lineRenderer.enabled = !(lineRenderer.enabled);
-        }
-        */
-        //print("Laser Source : LaserActivated " + LaserActivated);
-        //print("Laser Source : PreviousFrameStateLaser " + PreviousFrameStateLaser);
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, numberOfCase*0.64f ,layerMaskPlayer);
         if ((LaserActivated) && (hitInfo))
         {
-            if (invicibility == false)
-            {
-                SignalLaser?.Invoke();
-            }
+            SignalLaser?.Invoke();
+            print("bro");
+
         }
         if ((LaserActivated) && (!PreviousFrameStateLaser))
         {

@@ -28,7 +28,6 @@ public class LaserSprite : MonoBehaviour
         CoroutineInProgress = true;
         ChangeStateSprite(true);
         yield return new WaitForSeconds(time_of_activation);
-        //SignalSandDamage?.Invoke();
         ChangeStateSprite(false);
         yield return new WaitForSeconds(time_of_desactivation);
         CoroutineInProgress = false;
@@ -37,7 +36,5 @@ public class LaserSprite : MonoBehaviour
 
     void ChangeStateSprite(bool state)
     {
-        GetComponent<SpriteRenderer>().enabled = state;
-        //this.gameObject.SetActive(state);
-    }
+        GetComponent<SpriteRenderer>().enabled = state;    }
 }

@@ -15,6 +15,8 @@ public class HealthHeart : MonoBehaviour
     private void Start()
     {
         numberOfHearth = hearts.Length;
+        health = HPsaver.Instance.HP;
+
     }
     void Update()
     {

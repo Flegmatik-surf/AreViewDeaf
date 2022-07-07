@@ -13,6 +13,7 @@ public class Patrol : MonoBehaviour
 
     public char orientation;
     float animation;
+        private MapManager mapManager;
 
     public static event Action SignalPatrol;
     [SerializeField] private Animator anim;
@@ -20,13 +21,15 @@ public class Patrol : MonoBehaviour
 
     void Start()
     {
+        mapManager = FindObjectOfType<MapManager>();
         waypointIndex = 0;
 
     }
 
     void Update()
     {
-
+        try { mapManager.Effect(transform.position); }
+        catch { }
         //transform.LookAt(waypoints[waypointIndex].position);
         dist = Vector2.Distance(transform.position, waypoints[waypointIndex].position);
         PatrolMovement();
