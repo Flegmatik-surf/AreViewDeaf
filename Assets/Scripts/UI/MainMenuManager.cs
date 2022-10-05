@@ -41,21 +41,21 @@ public class MainMenuManager : MonoBehaviour
         print(clicButtonAudioSource);
 
         resolutions = Screen.resolutions;
-        List<string> options = new List<string>();
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+        //List<string> options = new List<string>();
+        //for (int i = 0; i < resolutions.Length; i++)
+        //{
+        //    string option = resolutions[i].width + " x " + resolutions[i].height;
+        //    options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.height)
-            {
-                defaultResolution = i;
-            }
-        }
-        resolutionDropdown.ClearOptions();
-        resolutionDropdown.AddOptions(options);
+        //    if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.height)
+        //    {
+        //        defaultResolution = i;
+        //    }
+        //}
+        //resolutionDropdown.ClearOptions();
+        //resolutionDropdown.AddOptions(options);
 
-        ApplyDefaults();
+        //ApplyDefaults();
     }
 
     public void StartNewGame()

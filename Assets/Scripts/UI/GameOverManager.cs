@@ -21,6 +21,7 @@ public class GameOverManager : MonoBehaviour
         clicButtonAudioSource.Play();
         print("Yeahhh let's continue");
         UnityEngine.SceneManagement.SceneManager.LoadScene(savedScene);
+        HPsaver.Instance.HP = HPsaver.Instance.maxHP;
     }
 
     public void GoToTitleScreen()

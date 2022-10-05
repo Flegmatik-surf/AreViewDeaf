@@ -41,6 +41,12 @@ public class PlayerManager : MonoBehaviour
         HPsaver.Instance.HP = currentHealth;
     }
 
+    public void RecharchePlayer()
+    {
+        currentHealth = HPsaver.Instance.HP;
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -73,7 +79,6 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-
     IEnumerator Invicible(int cooldown)
     {
         invincibilty = true;

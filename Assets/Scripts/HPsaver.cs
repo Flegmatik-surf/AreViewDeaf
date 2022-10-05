@@ -6,6 +6,7 @@ public class HPsaver : MonoBehaviour
 {
     public static HPsaver Instance;
     public int HP;
+    public int maxHP;
 
     void Awake()
     {
@@ -18,5 +19,6 @@ public class HPsaver : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        HPsaver.Instance.HP = HPsaver.Instance.maxHP;
     }
 }
